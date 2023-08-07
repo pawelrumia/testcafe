@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "demotest": "testcafe chrome tests/testFixture.js"
+  }
+}
