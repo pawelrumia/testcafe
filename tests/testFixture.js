@@ -2,9 +2,10 @@ import { Selector } from 'testcafe';
 
 const nameInput = Selector("#developer-name")
 const submitButton = Selector("#submit-button")
-const pageHeader = Selector("#article-header")
+const pageGoodbyeText = Selector("#article-header")
 const populateButton = Selector("#populate")
 const triedCafeButton = Selector("#tried-test-cafe")
+const pageHeader = Selector("header")
 
 fixture("My Fixture")
     .page("https://devexpress.github.io/testcafe/example/");
@@ -19,7 +20,7 @@ fixture("My Fixture")
     test("Klikacz", async t => {
         await t.typeText(nameInput, "Jahn Wick")
         .click(submitButton)
-        .expect(pageHeader.innerText).eql('Thank you, Jahn Wick!');
+        .expect(pageGoodbyeText.innerText).eql('Thank you, Jahn Wick!');
     })
 
     test('Sprawdzenie buttona', async t => {
@@ -43,6 +44,10 @@ fixture("My Fixture")
     })
 
     test("button exists", async t => {
-        await t.expect(populateButton).innerText.contains("Popu")
+        await t.expect(populateButton.textContent).contains("Popu").takeScreenshot
+    })
+
+    test("page header", async t => {
+        await t.expect(pageHeader.innerText).contains("TestCafe").takeScreenshot()
     })
     

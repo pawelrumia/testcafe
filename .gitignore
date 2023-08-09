@@ -7,6 +7,8 @@
 
 # Local History for Visual Studio Code
 .history/
+.screenshots/
+.node_modules/
 
 # Built Visual Studio Code Extensions
 *.vsix
