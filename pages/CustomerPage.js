@@ -6,3 +6,5 @@ class CustomerPage{
         this.noOrdersLabel = Selector('.no-data').withText("No orders")
     }
 }
+
+export default new CustomerPage();
