@@ -42,3 +42,7 @@ test("User registration and login", async t => {
     .click(LoginPage.submitButton)
     .click(HomePage.myAccountLink);
 });
+
+test("User registration and login", async t => {
+    await t.click(HomePage.registerLink)
+})
