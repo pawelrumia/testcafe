@@ -8,6 +8,13 @@ class ProductDetailsPage {
         this.succesMessage = Selector('div.bar-notification.success')
         this.checkoutAsGuestButton = Selector('.button-1.checkout-as-guest-button')
     }
+
+    async checkoutNewProduct() {
+        await t.selectText(this.productQuantity).pressKey('delete')
+        .typeText(this.productQuantity, '3')
+        .click(this.addToCartButton)
+        .expect(this.succesMessage.exists).ok()
+    }
 }
 
 export default new ProductDetailsPage();

@@ -15,25 +15,16 @@ class RegisterPage {
         this.succesfulMessage = Selector("div.result").withText('Your registration completed')
     }
 
-    async selectDay(day) {
-        const dayOption = this.dayOfBirth.find('option');
-        await t
-            .click(this.dayOfBirth)
-            .click(dayOption.withText(day))
-    }
+    async registerNewUser(userFirstName, usrLastName, day, month, year, userEmail, userPassword) {
+        await this.selectDate(day, month, year)
 
-    async selectMonth(month) {
-        const monthOption = this.monthOfBirth.find('option');
-        await t
-            .click(this.monthOfBirth)
-            .click(monthOption.withText(month))
-    }
-
-    async selectYear(year) {
-        const yearOption = this.yearOfBirth.find('option');
-        await t
-            .click(this.yearOfBirth)
-            .click(yearOption.withText(year))
+        await t.click(this.genderMale)
+            .typeText(this.firstName, userFirstName)
+            .typeText(this.lastName, usrLastName)
+            .typeText(this.email, userEmail)
+            .typeText(this.password, userPassword)
+            .typeText(this.confirmPassword, userPassword)
+            .click(this.registerButton)
     }
 
     async selectDate(day, month, year) {
@@ -41,6 +32,10 @@ class RegisterPage {
         const monthOption = this.monthOfBirth.find('option');
         const yearOption = this.yearOfBirth.find('option');
         await t
+            .click(this.dayOfBirth)
+            .click(dayOption.withText(day))
+            .click(this.monthOfBirth)
+            .click(monthOption.withText(month))
             .click(this.yearOfBirth)
             .click(yearOption.withText(year))
     }

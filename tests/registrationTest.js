@@ -25,9 +25,7 @@ test("User registration and login", async t => {
     .typeText(RegisterPage.firstName, 'Ziomeczek')
     .typeText(RegisterPage.lastName, 'Coolio');
 
-    await RegisterPage.dayOfBirth('6')
-    await RegisterPage.monthOfBirth('January')
-    await RegisterPage.yearOfBirth('1999')
+    await RegisterPage.selectDate('6', 'January', '1999')
 
     await t.typeText(RegisterPage.email, userEmail)
     .typeText(RegisterPage.password, '123456')
