@@ -46,3 +46,24 @@ test("fat e2e test", async t => {
     .click(CartPage.checkoutButton)
     .expect(getUrl()).contains('checkout');
 })
+
+test("refactored e2e", async t => {
+    await t.maximizeWindow()
+    .click(HomePage.registerLink)
+    .expect(getUrl()).contains('register')
+
+    await RegisterPage.registerNewUser('Ziomek', 'LastName', '4', 'January', '1999', userEmail, '123456');
+    await t.expect(RegisterPage.succesfulMessage.exists).ok();
+
+    await HomePage.search('Apple MacBook Pro 13-inch');
+    await t.click(SearchResultPage.productItem)
+    .expect(getUrl()).contains('apple-macbook-pro-13-inch')
+    .expect(ProductDetailsPage.productPrice.exists).ok();
+
+    await ProductDetailsPage.checkoutNewProduct();
+
+    await t.click(HomePage.shoppingCart)
+    .click(CartPage.termsOfService)
+    .click(CartPage.checkoutButton)
+    .expect(getUrl()).contains('checkout');
+})
